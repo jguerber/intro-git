@@ -36,3 +36,7 @@ Optionnel : après avoir `pull` les modifications de Bob, Alice fait à son tour
 
 Finalement, Bob se dit qu'il y a probablement plus simple à faire que d'écrire manuellement une fonction pour chaque nombre à ajouter. Dans l'onglet "Historique" (ou en lançant `git log` dans l'onglet "Terminal"), il repère le hash du commit qui correspond au projet avant qu'il n'ajoute sa fonction. `>git checkout 197c1` permet de restaurer l'état du projet à ce commit. alternativement, Bob peut utiliser l'interface graphique pour voir l'état de `R/functions.R` avant ses modifications.
 
+Bob peut copier le code tel qu'il était initialement, puis `git checkout main` permet de restaurer le projet. Bob peut alors coller le code initial à la place de ses modifications, et `commit` ce retour en arrière s'il le souhaite.
+
+Optionnel : `git revert <hash>` crée automatiquement un commit qui annule les modifications du commit désigné par <hash>. Si on veut revert plusieurs commits, `git revert <hash1> <hash2> <hash3>` fonctionne 
+

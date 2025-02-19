@@ -7,3 +7,13 @@ add_one <- function(x) {
 #   x <- add_one(x)
 #   return(add_one(x))
 # }
+
+# ** A dé-commenter et commit avant de démarrer le scénario 2 **
+# add_n <- function(x, n) {
+#
+#   for (i in 1:n) {
+#    x <- add_one(x)
+#   }
+#
+#   return(x)
+# }
