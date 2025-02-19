@@ -13,20 +13,20 @@ Rstudio permet de `clone` le répertoire créé : importer les fichiers correspo
 
 Alice et Bob clonent le projet tous les deux, chacun sur son ordinateur.
 
-# Scénario 1 
+# Scénario 1 : modifier chacun son tour
 
 Bob décide de développer son projet étape par étape et commence par écrire une fonction pour ajouter 2 à n'importe quel nombre. Dès qu'il a écrit cette fonction, il la partage avec Alice via GitHub.
 
 ## 1a - apporter des modifications, les partager
 
 - créer un commit avec `add` et `commit`
-- envoyer ses commits sur le serveur avec `push` et les importer avec `pull`
+- publier ses commits sur le serveur avec `push` et les importer avec `pull`
 
 Bob écrit la fonction correspondante dans R/functions.R, sauvegarder puis `git add`:
 
 Bob ajoute ainsi les modifications apportées à l'environnement de *staging*. Une fois que Bob est satisfait de cette mise à jour du projet, il peut `commit` ses modifications, en remplissant le message de commit puis cliquant sur commit.
 
-Bob peut cliquer sur `push` pour envoyer ses commits locaux sur GitHub. Pour voir la nouvelle version du projet, Alice n'a qu'à cliquer sur `pull`.
+Bob peut cliquer sur `push` pour publier ses commits locaux sur GitHub. Pour voir la nouvelle version du projet, Alice n'a qu'à cliquer sur `pull`.
 
 Optionnel : après avoir `pull` les modifications de Bob, Alice fait à son tour des modifications, qu'elle peut `commit` et `push`.
 
@@ -40,3 +40,22 @@ Bob peut copier le code tel qu'il était initialement, puis `git checkout main` 
 
 Optionnel : `git revert <hash>` crée automatiquement un commit qui annule les modifications du commit désigné par <hash>. Si on veut revert plusieurs commits, `git revert <hash1> <hash2> <hash3>` fonctionne 
 
+# Scénario 2 : modifier en même temps, dans des branches différentes
+
+## 2a - créer des branches et naviguer entre branches
+
+- `branch`, `checkout`
+
+Quelque temps plus tard, Bob a bien avancé sur le projet ! Il a créé (au moins) deux commits supplémentaires, dans lequel il a créé une nouvelle fonction qui additionne deux nombres, quel qu'ils soient. Il a aussi ajouté des lignes dans `main.R` pour essayer différentes additions qui l'intéressent. Faire ces commits, les `push`, et les `pull` sur l'ordinateur d'Alice.
+
+En faisant plus de tests, Bob s'aperçoit que sa fonction n'est pas très performante et souhaite l'améliorer. Cependant, Alice a besoin que la version existante reste accessible sur GitHub car elle part en séminaire pour aller montrer à d'autres collègues comment additionner des nombres. En plus, elle compte faire des modifications dans `main.R` pour ajouter des exemples.
+
+Alice et Bob se mettent d'accord : Alice va créer une branche nommée `alice-exemples` et travailler dessus ; et Bob va travailler à optimiser sa fonction sur une autre branche, nommée `bob-optim`.
+
+## 2b - rassembler des branches localement
+
+- `merge`
+
+## 2c - rassembler des branches avec GitHub
+
+- comparer des branches publiées grâce aux Pull Requests
