@@ -1,8 +1,10 @@
-By groups of two, you play the role of Alice and Bob, two biologists who want to code an ambitious R project to be able to add two integers. The tutorial is split in two scenarios that allow to present basic and intermediate functionalities of version control with git coupled with sharing with GitHub. It is voluntarily focused on *collaboration*, meaning that basic git operations that are typically also done in single-user projects are introduced in a collaborative context.
+In this tutorial, by groups of two, you play the role of Alice and Bob, two biologists who want to code an ambitious R project to be able to add two integer numbers. Scenarios inspired by real-life collaboration situations allow to present basic and intermediate functionalities of version control with git coupled with sharing with GitHub. The tutorial is voluntarily focused on **collaboration**, meaning that basic git operations that are typically also done in single-user projects are introduced in a collaborative context.
 
 Don't panic.
 
-Start by deciding who plays who. For context, Alice is an experienced ecologist, that has been working for longer than Bob, whose main project currently is the task of adding two numbers (mirroring a supervisor/student pair). Because of a lack of available office space in Alice's institute, Alice and Bob do not work in the same building and therefore can't share code in person via USB sticks. The university e-mail server is also broken: they can't share code via email. They HAVE to use GitHub.
+Start by deciding who plays who (most importantly, decide which computer is Alice's and which one is Bob's). For context, Alice is an experienced ecologist, that has been working for longer than Bob (mirroring a supervisor/student duo). Bob's main project currently is the task of adding two numbers. Because of a lack of available office space in Alice's institute, Alice and Bob do not work in the same building and therefore can't share code in person via USB sticks. The university e-mail server is also broken: they can't share code via email. They HAVE to use GitHub.
+
+Bullet points at the start of sections highlight specific topics covered by the tutorial. Feel free to ask your favorite LLM chatbot about them !
 
  - :golf: Course of the scenario
  - :computer: Activity to do on your computers
@@ -17,9 +19,9 @@ Start by deciding who plays who. For context, Alice is an experienced ecologist,
 
 :computer: Connected to their GitHub account, they `fork` the repository: it creates an identical repository in Bob's personnal account. Bob adds Alice's GitHub account as collaborator to their fork, via Settings > Collaborators > Add people.
 
-:computer: With Rstudio, you can `clone` the repository : importe the code files and the git project on your personal computer in a dedicated folder. File > New Project > Version control > Git: fill in Bob's fork URL and create the project.
+:clipboard: With Rstudio, you can `clone` the repository : import the code files and the git project on your personal computer in a dedicated folder.
 
-Alice and Bob clone the project on their two computers.
+:computer: File > New Project > Version control > Git: fill in Bob's fork URL and create the project. Alice and Bob clone the project on their two computers.
 
 # Scenario 1 : adding modifications, one person at a time
 
@@ -27,8 +29,8 @@ Alice and Bob clone the project on their two computers.
 
 ## 1a - record changes with git, share them
 
-- create a commit with `add` and `commit`
-- publish your commits to the remote server via `push` and import them with `pull`
+- create a commit with `git add` and `git commit`
+- publish your commits to the remote server via `git push` and import them with `git pull`
 
 :computer: Bob writes the new "add_two" function in, saves the file and adds the change to staging with `git add` (check the "Staged" box in the Rstudio Git panel). Once Bob is satisfied with the update, they can `commit` the changes : click on "commit" in the Git panel, write an informative commit message and click on commit. The changes are now tracked in Bob's local git project.
 
@@ -38,13 +40,13 @@ Alice and Bob clone the project on their two computers.
 
 ## 1b - falling back to older versions
 
-- `log`, `checkout`
+- `git log`, `git checkout`
 
 :golf: The next day, Bob realises that there is probably a better solution for the project than to manually write a function for each integer that could possibly be added.
 
 :computer: Bob checks the commit history (also called `git log`, History button in the Git panel), and Bob can click on the commit before the commit where they added the new function. Click on "view file": you can see the file as it was before ! The weird characters next to "view file" are the `commit hash`: they uniquely idendify each commit in the project. Bob can copy-paste the old version and paste it in place of the new one.
 
-:clipboard: Alternatively, typing `git revert <hash>` creates a commits that cancels the changes of the given commit. Reverting several commits at once is possible with `git revert <hash1> <hash2> <hash3>`.
+:clipboard: (Optional) Alternatively, typing `git checkout <hash>` in the terminal allows to restore the working directory to how it was at the specific commit hash. Type `git checkout main` to go back to the current state. Typing `git revert <hash>` in the terminal creates a commits that cancels the changes of the given commit. Reverting several commits at once is possible with `git revert <hash1> <hash2> <hash3>`.
 
 # Scenario 2: adding changes at the same time: working with several branches
 
@@ -62,12 +64,32 @@ Alice and Bob clone the project on their two computers.
 
 :computer: Alice and Bob agree that they will work on two separate branches : Alice creates a branch (git panel > new branch), called "alice-examples" and commit new examples on this branch. Be sure to tick "Sync branch with remote" so that the new branch is also created on GitHub. Bob creates a branch called "bob-optim" and commits an optimized version of their function there.
 
-:computer: Alice can thus work on their new examples in main.R while using the old version of R/functions.R and `push` them, while Bob can work on their optimisation in R/main.R and `push` them. Compare the state of the project between Alice's computer, Bob's computer, the "alice-examples", "main" and "bob-optim" branches on GitHub.
+:computer: Alice can thus work on their new examples in main.R while using the old version of R/functions.R and `push` them, while Bob can work on their optimisation in R/main.R and `push` them. Take some time to compare the state of the project between Alice's computer, Bob's computer, the "alice-examples", "main" and "bob-optim" branches on GitHub while you commit the changes and push/pull them.
 
-## 2b - rassembler des branches localement
+## 2b - reuniting branches locally
 
 - `merge`
 
-## 2c - rassembler des branches avec GitHub
+:golf: Bob is happy with the optimisation changes and wants to integrate them in the "main" branch so that Alice can benefit from the performance gains.
 
-- comparer des branches publiées grâce aux Pull Requests
+:computer: On Bob's computer, select the "main" branch with the arrows in the top-right corner of the git panel. Type `git merge bob-optim` in the terminal.
+
+:clipboard: Because there are no other recent commit on the main branch since the "bob-optim" branched out, the merge is "fast-forwarded": "main" is updated to point to the last commit of "bob-optim".
+
+:computer: Bob can `push` from the main branch. Go to the GitHub page : changes that were done on the "bob-optim" branch are now integrated in the new version of the "main" branch ! Alice can pull the new version of the main branch.
+
+## 2c - reuniting branches on the remote server
+
+- compare published branches with `Pull Requests`
+
+:golf: Alice would also like to add their changes to the main branch. However, look at the history on Alice's "alice-examples" branch and compare them to the commit history on branch main: the commits that Bob added are on the main branch, but not on Alice's branch.
+
+:clipboard: Reuniting branches with non-trivial differences is hard. To make sure that reuniting will not erase your collaborator's work, it is better to compare branches **as they are on the server** rather than playing around with other people's work locally and then pushing.
+
+:computer: From Alice's GitHub account, go to the server's "alice-examples" branch and create a pull request to Bob's main branch. GitHub will automatically check that the new examples are not erasing any work done by Bob on the main branch. There even is a comment section so that Bob can provide feedback to Alice's changes and agree to `merge` the changes.
+
+:clipboard: Unlike the fast-forward merge of the previous section, GitHub creates a new commit that unites Alice's branch with the main branch.
+
+:computer: After the PR is merged, Alice and Bob can `pull` the updated main branch and end up with the same version of their two sets of changes on their respective computers.
+
+:golf: If you're done early, feel free to play around a bit more. Here's a challenge: what if Bob and Alice had made changes in the same file instead of having worked separately ? Try it out !
