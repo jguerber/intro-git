@@ -62,7 +62,7 @@ Bullet points at the start of sections highlight specific topics covered by the 
 
 :clipboard: Working with alternative versions of the project requires `branches`: a branch is a reference to a commit. You can see the branch you are currently working on in the top-right of the git panel, next to the refresh icon. Alice and Bob were actually on branch main all this time ! While "on branch main", every new commit updates the "main" branch to point to that new commit. 
 
-:computer: Alice and Bob agree that they will work on two separate branches : Alice creates a branch (git panel > new branch), called "alice-examples" and commit new examples on this branch. Be sure to tick "Sync branch with remote" so that the new branch is also created on GitHub. Bob creates a branch called "bob-optim" and commits an optimized version of their function there.
+:computer: Alice and Bob agree that they will work separately on the two files, on two separate branches : Alice creates a branch (git panel > new branch), called "alice-examples" and commit new examples on this branch. Be sure to tick "Sync branch with remote" so that the new branch is also created on GitHub. Bob creates a branch called "bob-optim" and commits an optimized version of their function there.
 
 :computer: Alice can thus work on their new examples in main.R while using the old version of R/functions.R and `push` them, while Bob can work on their optimisation in R/main.R and `push` them. Take some time to compare the state of the project between Alice's computer, Bob's computer, the "alice-examples", "main" and "bob-optim" branches on GitHub while you commit the changes and push/pull them.
 
