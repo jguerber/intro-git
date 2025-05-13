@@ -9,11 +9,11 @@ add_two <- function(x) {
 }
 
 # ** Uncomment and commit changes before starting scenario 2 **
-# add_n <- function(x, n) {
-#
-#   for (i in 1:n) {
-#    x <- add_one(x)
-#   }
-#
-#   return(x)
-# }
+add_n <- function(x, n) {
+
+   for (i in 1:n) {
+    x <- add_one(x)
+   }
+
+   return(x)
+ }
