@@ -1,5 +1,5 @@
 add_one <- function(x) {
-  x + 1
+  x + 1^2
 }
 
 # Example of Bob's changes for step 1a : uncomment lines 6 to 9
