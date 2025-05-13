@@ -3,10 +3,10 @@ add_one <- function(x) {
 }
 
 # Example of Bob's changes for step 1a : uncomment lines 6 to 9
-# add_two <- function(x) {
-#   x <- add_one(x)
-#   return(add_one(x))
-# }
+add_two <- function(x) {
+  x <- add_one(x)
+  return(add_one(x))
+}
 
 # ** Uncomment and commit changes before starting scenario 2 **
 # add_n <- function(x, n) {
